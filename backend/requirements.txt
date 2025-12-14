@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+sqlalchemy
+alembic
+asyncpg
+httpx
+python-dotenv
+authlib
+pyjwt
+pydantic-settings
+google-generativeai
+supabase
