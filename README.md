@@ -14,6 +14,7 @@ RoastMyTune connects to your Spotify account, analyzes your listening history (T
 *   **Spotify Integration**: Secure OAuth login to fetch your real listening data.
 *   **AI Analysis**: Uses Google Gemini to analyze deep cuts, guilty pleasures, and basic-ness.
 *   **Taste Score**: Algorithms calculate a numerical score of your music taste (0-100).
+*   **AI Persona & Wrapped**: Assigns you a specific persona (e.g., "Sad 2014 Indie Kid") and shows your Top 5 Albums.
 *   **Dynamic UI**: Animated backgrounds, interactive charts, and brutal loading messages.
 *   **Shareable Cards**: Generate an Instagram-ready image of your roast to share with friends.
 
