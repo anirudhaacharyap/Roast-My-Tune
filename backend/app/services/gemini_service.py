@@ -43,18 +43,18 @@ class GeminiService:
         
         FORMAT:
         Return ONLY valid JSON with no markdown formatting.
-        {
+        {{
             "roast": "...",
             "persona": "...",
-            "era": {
+            "era": {{
                 "title": "...",
                 "description": "..."
-            },
-            "hogwarts_house": {
+            }},
+            "hogwarts_house": {{
                 "house": "...",
                 "reason": "..."
-            }
-        }
+            }}
+        }}
         """
         
         try:
