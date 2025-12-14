@@ -14,7 +14,7 @@ const Landing = () => {
   };
 
   const handleAppleImport = () => {
-    navigate("/loading");
+    navigate("/apple-music");
   };
 
   return (

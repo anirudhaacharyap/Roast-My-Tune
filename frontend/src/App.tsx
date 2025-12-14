@@ -9,6 +9,7 @@ import Loading from "./pages/Loading";
 import Roast from "./pages/Roast";
 import Share from "./pages/Share";
 import NotFound from "./pages/NotFound";
+import AppleRedirect from "./pages/AppleRedirect";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/loading" element={<Loading />} />
             <Route path="/roast" element={<Roast />} />
             <Route path="/share" element={<Share />} />
+            <Route path="/apple-music" element={<AppleRedirect />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
