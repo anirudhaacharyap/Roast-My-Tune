@@ -1,14 +1,10 @@
 # 🔥 RoastMyTune
 
-Web Link: (https://roast-my-tune.vercel.app/)
-
 **Let AI judge your terrible music taste.**
 
 RoastMyTune connects to your Spotify account, analyzes your listening history (Top Artists, Tracks, Genres), and uses Google's Gemini AI to generate a personalized, brutal roast of your music personality.
 
 ![RoastMyTune Screenshot](https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=2574&auto=format&fit=crop)
-
-
 
 ---
 
