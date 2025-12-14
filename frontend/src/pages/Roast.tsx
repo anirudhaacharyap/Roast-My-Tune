@@ -134,19 +134,67 @@ const Roast = () => {
           </Card>
 
           {/* Taste Score & Mood - Replacing generic mood chart with Score for now */}
-          <Card variant="neon" className="animate-fade-in-up delay-200">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <span>📊</span> Taste Score
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-center py-8">
-              <span className="text-6xl font-black text-gradient-neon">{score}/100</span>
-              <p className="text-muted-foreground mt-2">
-                {score < 50 ? "Absolutely Tragic 📉" : "Surprisingly Decent 📈"}
-              </p>
-            </CardContent>
-          </Card>
+          <div className="space-y-8 animate-fade-in-up delay-200">
+            <Card variant="neon">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <span>📊</span> Taste Score
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-center py-8">
+                <span className="text-6xl font-black text-gradient-neon">{score}/100</span>
+                <p className="text-muted-foreground mt-2">
+                  {score < 50 ? "Absolutely Tragic 📉" : "Surprisingly Decent 📈"}
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Persona Card */}
+            <Card variant="gradient" className="text-white border-2 border-primary/50 shadow-neon-pink">
+              <CardContent className="p-8 text-center">
+                <h3 className="text-sm uppercase tracking-widest opacity-80 mb-2">Your Audio Aura</h3>
+                <h2 className="text-3xl sm:text-4xl font-black leading-tight">
+                  "{result?.persona || "Basic Music Consumer"}"
+                </h2>
+                <div className="mt-4 flex justify-center gap-2">
+                  {result?.roast_traits?.slice(0, 3).map((trait, i) => (
+                    <span key={i} className="px-3 py-1 bg-black/20 rounded-full text-xs font-medium backdrop-blur-sm">
+                      {trait}
+                    </span>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Top Albums Section */}
+          <div className="col-span-1 lg:col-span-2 mt-8 animate-fade-in-up delay-400">
+            <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+              <span>💿</span> Your "Top" Albums
+              <span className="text-xs text-muted-foreground font-normal ml-2">(Judging by your tracks)</span>
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {result?.music_data?.top_tracks?.reduce((acc: any[], track: any) => {
+                // Simple deduplication by album name
+                if (!acc.find(a => a.album_name === track.album_name)) {
+                  acc.push(track);
+                }
+                return acc;
+              }, []).slice(0, 5).map((track: any, i: number) => (
+                <div key={i} className="group relative aspect-square bg-card rounded-xl overflow-hidden shadow-md transition-all hover:scale-105">
+                  {track.image_url ? (
+                    <img src={track.image_url} alt={track.album_name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gray-800 text-4xl">🎵</div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3">
+                    <p className="font-bold text-white text-sm line-clamp-1">{track.album_name}</p>
+                    <p className="text-xs text-gray-300 line-clamp-1">{track.artist_names[0]}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
           {/* Action Buttons */}
           <Card variant="default" className="animate-fade-in-up delay-300">

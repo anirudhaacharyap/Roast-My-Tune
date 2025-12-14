@@ -8,6 +8,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 export interface RoastResult {
     id?: number;
     roast_text: string;
+    persona: string;
     taste_score: number;
     roast_traits: string[];
     music_data: {

@@ -11,9 +11,10 @@ class GeminiService:
         # Use the latest stable model
         self.model = genai.GenerativeModel('models/gemini-2.5-flash-lite')
 
-    async def generate_roast(self, music_data: MusicData) -> str:
+    async def generate_roast(self, music_data: MusicData) -> dict:
         """
-        Generates a brutal roast based on the user's music data.
+        Generates a brutal roast and a persona based on the user's music data.
+        Returns: {'roast': str, 'persona': str}
         """
         
         # Construct the prompt
@@ -25,7 +26,7 @@ class GeminiService:
         print(f"[Gemini] Generating roast for: Artists={top_artists}, Tracks={top_tracks}")
         
         prompt = f"""
-        You are a mean, brutal, Gen-Z music critic. Your job is to ROAST the user's music taste based on their data.
+        You are a mean, brutal, Gen-Z music critic. Your job is to ROAST the user's music taste and assign them a specific, funny archetypal PERSONA.
         
         USER DATA:
         - Top Artists: {top_artists}
@@ -35,20 +36,30 @@ class GeminiService:
         - Traits: {traits}
         
         INSTRUCTIONS:
-        1. Write a short, biting paragraph (3-4 sentences) directly addressing the user.
-        2. BE SPECIFIC. You MUST mention at least 2 specific artists from their list by name and mock them.
-        3. Use Gen-Z slang naturally (but don't overdo it to be cringe).
-        4. Be ruthless. If they listen to pop, call them basic. If indie, call them pretentious.
-        5. Do NOT start with "Oh," or "Wow,". Just dive into the insult.
-        6. Return ONLY the roast text, no quotes around it.
+        1. **ROAST**: Write a short, biting paragraph (3-4 sentences) directly addressing the user. Mention specific artists. Be ruthless.
+        2. **PERSONA**: content of "persona" field. Give them a short, funny 3-5 word title describing their vibe (e.g., "Sad 2014 Indie Kid", "Gas Station Drake Fan", "Divorced Dad Rock Enthusiast").
+        
+        FORMAT:
+        Return ONLY valid JSON with no markdown formatting.
+        {{
+            "roast": "Your roast text here...",
+            "persona": "Your Persona Title"
+        }}
         """
         
         try:
             response = self.model.generate_content(prompt)
-            roast = response.text.replace('"', '').strip()
-            print(f"[Gemini] Generated roast successfully: {roast[:50]}...")
-            return roast
+            # Clean response if it contains markdown code blocks
+            clean_text = response.text.replace('```json', '').replace('```', '').strip()
+            import json
+            data = json.loads(clean_text)
+            
+            print(f"[Gemini] Generated success: Persona='{data.get('persona')}'")
+            return data
         except Exception as e:
             print(f"[Gemini] ERROR: {type(e).__name__}: {e}")
-            # Return a personalized fallback using actual data
-            return f"Your top artist is {music_data.top_artists[0].name if music_data.top_artists else 'unknown'}? That's rough. Even our AI couldn't handle the cringe. 💀"
+            # Fallback
+            return {
+                "roast": f"Your top artist is {music_data.top_artists[0].name if music_data.top_artists else 'unknown'}? That's rough. Even our AI couldn't handle the cringe. 💀",
+                "persona": "Basic Music Consumer"
+            }

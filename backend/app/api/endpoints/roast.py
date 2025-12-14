@@ -14,6 +14,7 @@ class GenerateRoastRequest(BaseModel):
 class RoastResponse(BaseModel):
     id: int | None = None
     roast_text: str
+    persona: str
     taste_score: int
     roast_traits: list[str]
     music_data: dict # simplified snapshot
@@ -43,8 +44,8 @@ async def generate_roast_endpoint(
         # Score
         music_data = scorer.calculate_score(top_artists, top_tracks)
         
-        # Roast
-        roast_text = await gemini.generate_roast(music_data)
+        # Roast (Returns Dict with 'roast' and 'persona')
+        ai_result = await gemini.generate_roast(music_data)
         
         # Build response snapshot
         snapshot = {
@@ -56,7 +57,8 @@ async def generate_roast_endpoint(
         # No DB - just return response
         return RoastResponse(
             id=None,
-            roast_text=roast_text,
+            roast_text=ai_result.get("roast", "Roast failed"),
+            persona=ai_result.get("persona", "Basic Music Consumer"),
             taste_score=music_data.taste_score,
             roast_traits=music_data.roast_traits,
             music_data=snapshot
