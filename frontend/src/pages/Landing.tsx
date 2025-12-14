@@ -43,7 +43,7 @@ const Landing = () => {
           <h1 className="font-script text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-tight mb-6 animate-fade-in-up">
             Let AI{" "}
             <span className="relative inline-block">
-              <span className="relative z-10 text-gradient-neon">roast</span>
+              <span className="relative z-10 text-gradient-neon pr-2">roast</span>
               <span className="absolute -bottom-2 left-0 w-full h-4 bg-primary/30 -rotate-1" />
             </span>
             <br />
