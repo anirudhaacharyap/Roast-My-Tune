@@ -162,7 +162,7 @@ const Roast = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <h3 className="text-xl font-bold mb-2 text-white">
+                <h3 className="text-xl font-bold mb-2 text-primary">
                   {result?.hogwarts_house?.house || "Sorting..."} 🧙‍♂️
                 </h3>
                 <p className="text-sm text-muted-foreground italic">
