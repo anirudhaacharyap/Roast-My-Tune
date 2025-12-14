@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { WavyBackground } from "@/components/WavyBackground";
 import { FloatingEmoji } from "@/components/FloatingEmoji";
 import { AudioAura } from "@/components/AudioAura";
-import { Copy, Share2, RefreshCw, Music2, Wand2, History } from "lucide-react";
+import { Copy, Share2, RefreshCw, Music2, Wand2, History, Download } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 const sampleRoast = `Oh, so you think you have good taste in music ? Let me tell you, your top artist being Taylor Swift while simultaneously having Playboi Carti in your heavy rotation is giving major identity crisis vibes. 😭
