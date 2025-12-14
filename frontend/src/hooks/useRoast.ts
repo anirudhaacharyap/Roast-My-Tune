@@ -19,7 +19,6 @@ export interface RoastResult {
 
 export const useRoast = () => {
     const { session } = useAuth();
-    console.log("DEBUG: Current API_URL is:", API_URL); // Debugging Vercel connection
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [result, setResult] = useState<RoastResult | null>(null);
