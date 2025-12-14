@@ -19,6 +19,10 @@ export interface RoastResult {
 
 export const useRoast = () => {
     const { session } = useAuth();
+    // Temporary Debug for Mobile
+    // eslint-disable-next-line
+    useEffect(() => { if (session) alert("Debug URL: " + API_URL); }, [session]);
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [result, setResult] = useState<RoastResult | null>(null);
