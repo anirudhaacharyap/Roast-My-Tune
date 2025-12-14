@@ -40,7 +40,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const { error } = await supabase.auth.signInWithOAuth({
             provider: 'spotify',
             options: {
-                scopes: 'user-read-email user-read-private user-top-read user-read-recently-played',
+                scopes: 'user-read-email user-read-private user-top-read user-read-recently-played user-library-read',
                 redirectTo: window.location.origin + '/loading', // Redirect to loading/processing page
             },
         });
