@@ -135,6 +135,22 @@ npm run dev
     { "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }
     ```
 
+### 🔧 Troubleshooting Common Errors
+
+**1. "Hold Up" / Access Denied**
+*   **Cause**: User clicked "Cancel" on Spotify login OR Redirect URL mismatch.
+*   **Fix**: Ensure your Vercel URL is exactly matched in Supabase Redirect URLs.
+
+**2. App works on WiFi but fails on Mobile Data (Jio/etc)**
+*   **Cause**: Some ISPs block `*.up.railway.app` domains.
+*   **Fix (Recommended): Use Vercel Proxy**
+    1.  We have configured `vercel.json` to proxy API requests.
+    2.  Go to **Vercel Dashboard** -> **Settings** -> **Environment Variables**.
+    3.  Edit `VITE_API_URL`.
+    4.  Set the value to: `/` (just a forward slash).
+    5.  Redeploy (or wait for next build).
+    *   *Why?* This makes the Frontend talk to Vercel, and Vercel talks to Railway. No ISP blocking!
+
 ### Authentication (Supabase)
 1.  Go to **Supabase Dashboard** -> Authentication -> URL Configuration.
 2.  Add your Vercel URL to **Redirect URLs**:
