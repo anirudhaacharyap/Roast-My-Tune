@@ -1,4 +1,5 @@
 # 🔥 RoastMyTune
+Try it out here: https://roast-my-tune.vercel.app/
 
 **Let AI judge your terrible music taste.**
 
