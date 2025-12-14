@@ -19,15 +19,24 @@ const Landing = () => {
 
   return (
     <WavyBackground className="min-h-screen bg-background">
-      {/* Floating genre bubbles - Adjusted for mobile visibility without overlap */}
-      <FloatingBubble text="Pop" className="top-[5%] left-[5%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={0} variant="primary" />
-      <FloatingBubble text="Hip Hop" className="top-[15%] right-[5%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={200} variant="dark" />
-      <FloatingBubble text="Rock" className="bottom-[25%] left-[2%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={400} variant="pink" />
-      <FloatingBubble text="R&B" className="bottom-[35%] right-[2%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={600} variant="secondary" />
-      <FloatingBubble text="Indie" className="top-[25%] right-[8%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={300} variant="blue" />
-      <FloatingBubble text="EDM" className="bottom-[15%] left-[5%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={500} variant="primary" />
-      <FloatingBubble text="Jazz" className="bottom-[5%] right-[20%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={700} variant="dark" />
-      <FloatingBubble text="K-Pop" className="top-[10%] left-[40%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={450} variant="pink" />
+      {/* Floating genre bubbles - More distributed "cloud" effect */}
+      {/* Top Cluster */}
+      <FloatingBubble text="Pop" className="top-[15%] left-[10%] scale-90 md:scale-110 opacity-60 md:opacity-80" delay={0} variant="primary" />
+      <FloatingBubble text="K-Pop" className="top-[12%] right-[15%] scale-75 md:scale-100 opacity-50 md:opacity-70" delay={450} variant="pink" />
+      <FloatingBubble text="Indie" className="top-[25%] left-[5%] scale-75 md:scale-95 opacity-50 md:opacity-70" delay={300} variant="blue" />
+      <FloatingBubble text="Hip Hop" className="top-[22%] right-[5%] scale-90 md:scale-105 opacity-60 md:opacity-80" delay={200} variant="dark" />
+
+      {/* Middle/Side Cluster (Avoid center text) */}
+      <FloatingBubble text="Metal" className="top-[45%] left-[2%] scale-75 md:scale-90 opacity-40 md:opacity-60" delay={800} variant="dark" />
+      <FloatingBubble text="Techno" className="top-[50%] right-[2%] scale-75 md:scale-90 opacity-40 md:opacity-60" delay={900} variant="primary" />
+
+      {/* Bottom Cluster */}
+      <FloatingBubble text="Rock" className="bottom-[25%] left-[8%] scale-90 md:scale-105 opacity-60 md:opacity-80" delay={400} variant="pink" />
+      <FloatingBubble text="R&B" className="bottom-[30%] right-[10%] scale-90 md:scale-110 opacity-60 md:opacity-80" delay={600} variant="secondary" />
+      <FloatingBubble text="EDM" className="bottom-[15%] left-[20%] scale-75 md:scale-95 opacity-50 md:opacity-70" delay={500} variant="primary" />
+      <FloatingBubble text="Jazz" className="bottom-[18%] right-[25%] scale-75 md:scale-95 opacity-50 md:opacity-70" delay={700} variant="dark" />
+      <FloatingBubble text="Classical" className="bottom-[8%] left-[45%] scale-60 md:scale-75 opacity-30 md:opacity-50" delay={1000} variant="blue" />
+      <FloatingBubble text="Trap" className="top-[8%] right-[35%] scale-60 md:scale-75 opacity-30 md:opacity-50" delay={150} variant="secondary" />
 
       <div className="container mx-auto px-4 py-8 min-h-screen flex flex-col items-center justify-center relative z-10">
         {/* Logo / Brand */}
