@@ -27,6 +27,14 @@ const Landing = () => {
       <FloatingBubble text="Indie" className="top-[25%] left-[5%] scale-75 md:scale-95 opacity-50 md:opacity-70" delay={300} variant="blue" />
       <FloatingBubble text="Hip Hop" className="top-[22%] right-[5%] scale-90 md:scale-105 opacity-60 md:opacity-80" delay={200} variant="dark" />
 
+      {/* Background Depth Layer (Fainter, Niche Genres) */}
+      <FloatingBubble text="Hyperpop" className="top-[5%] left-[30%] scale-50 md:scale-75 opacity-20 md:opacity-40" delay={1200} variant="neon" />
+      <FloatingBubble text="Phonk" className="top-[35%] right-[25%] scale-50 md:scale-75 opacity-20 md:opacity-40" delay={1300} variant="dark" />
+      <FloatingBubble text="Shoegaze" className="bottom-[40%] left-[15%] scale-50 md:scale-75 opacity-20 md:opacity-40" delay={1400} variant="blue" />
+      <FloatingBubble text="Midwest Emo" className="bottom-[10%] right-[40%] scale-50 md:scale-75 opacity-20 md:opacity-40" delay={1500} variant="secondary" />
+      <FloatingBubble text="Ska" className="top-[60%] left-[8%] scale-40 md:scale-60 opacity-10 md:opacity-30" delay={1600} variant="primary" />
+      <FloatingBubble text="Dubstep" className="top-[15%] right-[35%] scale-40 md:scale-60 opacity-10 md:opacity-30" delay={1700} variant="pink" />
+
       {/* Middle/Side Cluster (Avoid center text) */}
       <FloatingBubble text="Metal" className="top-[45%] left-[2%] scale-75 md:scale-90 opacity-40 md:opacity-60" delay={800} variant="dark" />
       <FloatingBubble text="Techno" className="top-[50%] right-[2%] scale-75 md:scale-90 opacity-40 md:opacity-60" delay={900} variant="primary" />
