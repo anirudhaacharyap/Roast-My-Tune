@@ -9,6 +9,14 @@ export interface RoastResult {
     id?: number;
     roast_text: string;
     persona: string;
+    era?: {
+        title: string;
+        description: string;
+    };
+    hogwarts_house?: {
+        house: string;
+        reason: string;
+    };
     taste_score: number;
     roast_traits: string[];
     music_data: {

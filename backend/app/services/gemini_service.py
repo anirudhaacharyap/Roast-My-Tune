@@ -37,14 +37,24 @@ class GeminiService:
         
         INSTRUCTIONS:
         1. **ROAST**: Write a short, biting paragraph (3-4 sentences) directly addressing the user. Mention specific artists. Be ruthless.
-        2. **PERSONA**: content of "persona" field. Give them a short, funny 3-5 word title describing their vibe (e.g., "Sad 2014 Indie Kid", "Gas Station Drake Fan", "Divorced Dad Rock Enthusiast").
+        2. **PERSONA**: Give them a short, funny 3-5 word title describing their vibe (e.g., "Sad 2014 Indie Kid", "Gas Station Drake Fan").
+        3. **ERA**: Tell them what year they are mentally stuck in. Provide a Title (e.g. "2016 SoundCloud Rap Era") and a short Description.
+        4. **HOGWARTS HOUSE**: Sort them into a Harry Potter House based *solely* on music vibe. Provide the House Name and a snarky 1-sentence Reason.
         
         FORMAT:
         Return ONLY valid JSON with no markdown formatting.
-        {{
-            "roast": "Your roast text here...",
-            "persona": "Your Persona Title"
-        }}
+        {
+            "roast": "...",
+            "persona": "...",
+            "era": {
+                "title": "...",
+                "description": "..."
+            },
+            "hogwarts_house": {
+                "house": "...",
+                "reason": "..."
+            }
+        }
         """
         
         try:

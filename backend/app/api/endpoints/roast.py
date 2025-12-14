@@ -15,6 +15,8 @@ class RoastResponse(BaseModel):
     id: int | None = None
     roast_text: str
     persona: str
+    era: dict | None = None
+    hogwarts_house: dict | None = None
     taste_score: int
     roast_traits: list[str]
     music_data: dict # simplified snapshot
@@ -59,6 +61,8 @@ async def generate_roast_endpoint(
             id=None,
             roast_text=ai_result.get("roast", "Roast failed"),
             persona=ai_result.get("persona", "Basic Music Consumer"),
+            era=ai_result.get("era"),
+            hogwarts_house=ai_result.get("hogwarts_house"),
             taste_score=music_data.taste_score,
             roast_traits=music_data.roast_traits,
             music_data=snapshot

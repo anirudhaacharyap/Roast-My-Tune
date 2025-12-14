@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useRoast } from "@/hooks/useRoast";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { WavyBackground } from "@/components/WavyBackground";
-import { MoodChart } from "@/components/MoodChart";
 import { FloatingEmoji } from "@/components/FloatingEmoji";
-import { Share2, Download, RefreshCw, Home } from "lucide-react";
+import { AudioAura } from "@/components/AudioAura";
+import { Copy, Share2, RefreshCw, Music2, Wand2, History } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
-const sampleRoast = `Oh, so you think you have good taste in music? Let me tell you, your top artist being Taylor Swift while simultaneously having Playboi Carti in your heavy rotation is giving major identity crisis vibes. 😭
+const sampleRoast = `Oh, so you think you have good taste in music ? Let me tell you, your top artist being Taylor Swift while simultaneously having Playboi Carti in your heavy rotation is giving major identity crisis vibes. 😭
 
 You listened to the same song 847 times and still can't remember the lyrics? Classic. Your "chill vibes" playlist has three different versions of the same lo-fi beat, and honestly, that's just lazy.
 
-Also, the fact that you discovered that one indie band before they went mainstream and won't shut up about it? We see you. We just don't care. 💀
+  Also, the fact that you discovered that one indie band before they went mainstream and won't shut up about it? We see you. We just don't care. 💀
 
 At least your guilty pleasure playlist is honest — even if it's 90% early 2000s pop hits that belong in a time capsule.`;
 
@@ -92,7 +92,6 @@ const Roast = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <Button variant="outline" size="sm" onClick={() => navigate("/")}>
-            <Home className="w-4 h-4" />
             Home
           </Button>
           <div className="inline-flex items-center gap-2 bg-dark text-cream px-4 py-2 rounded-full">
@@ -133,38 +132,57 @@ const Roast = () => {
             </CardContent>
           </Card>
 
-          {/* Taste Score & Mood - Replacing generic mood chart with Score for now */}
-          <div className="space-y-8 animate-fade-in-up delay-200">
-            <Card variant="neon">
+          {/* Novelty Grid: Era, House, Aura */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fade-in-up delay-300">
+
+            {/* 1. Era Detector */}
+            <Card variant="dark">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <span>📊</span> Taste Score
+                <CardTitle className="flex items-center gap-2 text-primary">
+                  <History className="w-5 h-5" />
+                  Mental Era
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-center py-8">
-                <span className="text-6xl font-black text-gradient-neon">{score}/100</span>
-                <p className="text-muted-foreground mt-2">
-                  {score < 50 ? "Absolutely Tragic 📉" : "Surprisingly Decent 📈"}
+              <CardContent>
+                <h3 className="text-xl font-bold mb-2 text-gradient-neon">
+                  {result?.era?.title || "Loading Era..."}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {result?.era?.description || "Calculating which year you're stuck in..."}
                 </p>
               </CardContent>
             </Card>
 
-            {/* Persona Card */}
-            <Card variant="gradient" className="text-white border-2 border-primary/50 shadow-neon-pink">
-              <CardContent className="p-8 text-center">
-                <h3 className="text-sm uppercase tracking-widest opacity-80 mb-2">Your Audio Aura</h3>
-                <h2 className="text-3xl sm:text-4xl font-black leading-tight">
-                  "{result?.persona || "Basic Music Consumer"}"
-                </h2>
-                <div className="mt-4 flex justify-center gap-2">
-                  {result?.roast_traits?.slice(0, 3).map((trait, i) => (
-                    <span key={i} className="px-3 py-1 bg-black/20 rounded-full text-xs font-medium backdrop-blur-sm">
-                      {trait}
-                    </span>
-                  ))}
-                </div>
+            {/* 2. Hogwarts House */}
+            <Card variant="dark">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-purple-400">
+                  <Wand2 className="w-5 h-5" />
+                  Vibe Sorting
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <h3 className="text-xl font-bold mb-2 text-white">
+                  {result?.hogwarts_house?.house || "Sorting..."} 🧙‍♂️
+                </h3>
+                <p className="text-sm text-muted-foreground italic">
+                  "{result?.hogwarts_house?.reason}"
+                </p>
               </CardContent>
             </Card>
+
+            {/* 3. Audio Aura (Full Width on mobile, span 2 on desktop if needed, or just insert) */}
+            <div className="md:col-span-2">
+              {/* Calculate average energy/valence from tracks */}
+              <AudioAura
+                energy={
+                  (result?.music_data?.top_tracks?.reduce((acc: number, t: any) => acc + (t.energy || 0.5), 0) || 0) / (result?.music_data?.top_tracks?.length || 1)
+                }
+                valence={
+                  (result?.music_data?.top_tracks?.reduce((acc: number, t: any) => acc + (t.valence || 0.5), 0) || 0) / (result?.music_data?.top_tracks?.length || 1)
+                }
+              />
+            </div>
           </div>
 
           {/* Top Albums Section */}
