@@ -83,10 +83,10 @@ const Roast = () => {
 
   return (
     <WavyBackground className="min-h-screen bg-background py-8">
-      {/* Floating emojis */}
-      <FloatingEmoji emoji="💀" className="top-[5%] right-[10%]" delay={0} size="lg" />
-      <FloatingEmoji emoji="🔥" className="top-[20%] left-[5%]" delay={300} size="md" />
-      <FloatingEmoji emoji="😭" className="bottom-[30%] right-[5%]" delay={600} size="lg" />
+      {/* Floating emojis - Hidden on mobile */}
+      <FloatingEmoji emoji="💀" className="hidden md:block top-[5%] right-[10%]" delay={0} size="lg" />
+      <FloatingEmoji emoji="🔥" className="hidden md:block top-[20%] left-[5%]" delay={300} size="md" />
+      <FloatingEmoji emoji="😭" className="hidden md:block bottom-[30%] right-[5%]" delay={600} size="lg" />
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
@@ -154,8 +154,8 @@ const Roast = () => {
               <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
                 <span>⚡</span> What now?
               </h3>
-              <div className="grid grid-cols-2 gap-3">
-                <Button variant="neon" onClick={handleShare} className="col-span-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <Button variant="neon" onClick={handleShare} className="col-span-1 sm:col-span-2">
                   <Share2 className="w-5 h-5" />
                   Share Your Roast
                 </Button>
