@@ -79,19 +79,38 @@ const Share = () => {
       const text = encodeURIComponent(shareText);
       window.open(`https://twitter.com/intent/tweet?text=${text}`, "_blank");
     } else if (platform === "Instagram") {
-      // Instagram doesn't have a web share API, use Web Share if available
-      if (navigator.share) {
+      // Instagram / General Share
+      if (navigator.share && shareCardRef.current) {
         try {
-          await navigator.share({
-            title: "RoastMyTune",
-            text: shareText,
-          });
+          setIsDownloading(true);
+          // Generate Blob
+          const dataUrl = await toPng(shareCardRef.current, { quality: 1, pixelRatio: 2 });
+          const blob = await (await fetch(dataUrl)).blob();
+          const file = new File([blob], "roast.png", { type: "image/png" });
+
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              files: [file],
+              title: "RoastMyTune",
+              text: shareText,
+            });
+          } else {
+            // Fallback if files not supported
+            await navigator.share({
+              title: "RoastMyTune",
+              text: shareText,
+              url: "https://roast-my-tune.vercel.app"
+            });
+          }
         } catch (err) {
+          console.error("Share failed", err);
           // User cancelled or error
           toast({
-            title: "Share cancelled",
-            description: "Download the image and share to Instagram manually!",
+            title: "Share cancelled or failed",
+            description: "Try saving the image instead!",
           });
+        } finally {
+          setIsDownloading(false);
         }
       } else {
         // Fallback: copy text
