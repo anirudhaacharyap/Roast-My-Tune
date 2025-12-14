@@ -22,12 +22,12 @@ const Landing = () => {
       {/* Floating genre bubbles - Adjusted for mobile visibility without overlap */}
       <FloatingBubble text="Pop" className="top-[5%] left-[5%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={0} variant="primary" />
       <FloatingBubble text="Hip Hop" className="top-[15%] right-[5%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={200} variant="dark" />
-      <FloatingBubble text="Rock" className="top-[50%] left-[2%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={400} variant="pink" />
-      <FloatingBubble text="R&B" className="top-[60%] right-[2%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={600} variant="secondary" />
-      <FloatingBubble text="Indie" className="top-[30%] right-[2%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={300} variant="blue" />
+      <FloatingBubble text="Rock" className="bottom-[25%] left-[2%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={400} variant="pink" />
+      <FloatingBubble text="R&B" className="bottom-[35%] right-[2%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={600} variant="secondary" />
+      <FloatingBubble text="Indie" className="top-[25%] right-[8%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={300} variant="blue" />
       <FloatingBubble text="EDM" className="bottom-[15%] left-[5%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={500} variant="primary" />
       <FloatingBubble text="Jazz" className="bottom-[5%] right-[20%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={700} variant="dark" />
-      <FloatingBubble text="K-Pop" className="top-[20%] left-[2%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={450} variant="pink" />
+      <FloatingBubble text="K-Pop" className="top-[10%] left-[40%] scale-75 md:scale-100 opacity-60 md:opacity-100" delay={450} variant="pink" />
 
       <div className="container mx-auto px-4 py-8 min-h-screen flex flex-col items-center justify-center relative z-10">
         {/* Logo / Brand */}
